@@ -42,13 +42,16 @@ body{
   animation:neonPulse 2.5s infinite;
   z-index:999;
 }
-.overlay-bar img{width:40px;}
+.overlay-bar img{width:28px;}
 .overlay-bar a{
   color:#fff;
   text-decoration:none;
   border:2px solid #ff2e2e;
   padding:10px 14px;
   border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
   transition:.3s;
 }
 .overlay-bar a:hover{
@@ -77,18 +80,18 @@ body{
   color:#fff;
   text-decoration:none;
   border:2px solid #ff2e2e;
-  padding:8px 14px;
+  padding:6px 10px;
   border-radius:10px;
   margin-left:8px;
   display:inline-flex;
   align-items:center;
-  gap:6px;
+  gap:4px;
   transition:.3s;
 }
 .scroll-bar a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;}
 
 /* SECTIONS */
-section{padding:70px 20px; max-width:900px;margin:auto;}
+section{padding:50px 20px; max-width:900px;margin:auto;}
 h2{color:#ff2e2e}
 
 /* GALLERY */
@@ -113,6 +116,10 @@ h2{color:#ff2e2e}
   color:#fff;
   padding:10px;
   cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
   transition:.3s;
 }
 .card button:hover{
@@ -127,8 +134,8 @@ h2{color:#ff2e2e}
   padding:20px;
   margin-bottom:40px;
 }
-input[type="file"]{padding:5px;}
-button{cursor:pointer;}
+input[type="file"], input[type="text"], textarea{padding:6px;}
+textarea{width:100%;border:2px solid #ff2e2e;border-radius:6px;padding:8px;margin-top:5px;background:#14141c;color:#fff;}
 </style>
 </head>
 <body>
@@ -139,37 +146,45 @@ button{cursor:pointer;}
 <div class="scroll-bar" id="scrollBar">
   <div class="logo"><img src="logo.png"><strong>DARK THARU</strong></div>
   <div class="links">
-    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">YT</a>
-    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">TikTok</a>
+    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">🎥 YT</a>
+    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">🎵 TikTok</a>
   </div>
 </div>
 
 <!-- NEON OVERLAY BOTTOM BAR -->
 <div class="overlay-bar">
   <img src="logo.png">
-  <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">YT Main</a>
-  <a href="https://youtube.com/@darktharu-o7z" target="_blank">YT Dark</a>
-  <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">TikTok</a>
-  <a href="https://wa.me/94772076535" target="_blank">WhatsApp</a>
+  <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">🎥 YT Main</a>
+  <a href="https://youtube.com/@darktharu-o7z" target="_blank">🎬 YT Dark</a>
+  <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">🎵 TikTok</a>
+  <a href="https://wa.me/94772076535" target="_blank">💬 WhatsApp</a>
 </div>
 
 <section>
 <h2>Admin Upload Panel</h2>
 <div id="adminPanel">
   <input type="file" id="file">
-  <button onclick="upload()">Upload Photo</button>
+  <button onclick="upload()">⬆️ Upload Photo</button>
 </div>
 
 <h2>Photo Gallery</h2>
 <div class="gallery" id="gallery"></div>
+
+<h2>Visitor Comments</h2>
+<input type="text" id="visitorName" placeholder="ඔබගේ නම">
+<textarea id="visitorComment" placeholder="ඔබගේ comment"></textarea>
+<button onclick="addComment()">💬 Post Comment</button>
+<div id="comments"></div>
 </section>
+
+<!-- CLICK SOUND -->
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
 
 <script>
 // ===== CLICK SOUND =====
-const clickSound = new Audio("click.mp3");
-function playSound(){clickSound.currentTime=0; clickSound.play();}
+function playSound(){document.getElementById("clickSound").currentTime=0;document.getElementById("clickSound").play();}
 
-// ===== SCROLL TOP BAR =====
+// ===== SCROLL BAR =====
 window.addEventListener("scroll",()=>{
   const bar=document.getElementById("scrollBar");
   if(window.scrollY>200) bar.classList.add("show");
@@ -184,11 +199,10 @@ if(isAdmin){
   alert("Admin Mode Enabled");
 }
 
-// ===== UPLOAD SYSTEM (LOCAL STORAGE) =====
+// ===== LOCALSTORAGE PHOTO UPLOAD =====
 function upload(){
   const file = document.getElementById("file").files[0];
   if(!file) return alert("Select image");
-
   const reader = new FileReader();
   reader.onload = e => {
     let photos = JSON.parse(localStorage.getItem("photos") || "[]");
@@ -199,19 +213,58 @@ function upload(){
   reader.readAsDataURL(file);
 }
 
-// ===== LOAD PHOTOS =====
 function loadPhotos(){
-  const gallery = document.getElementById("gallery");
+  const gallery=document.getElementById("gallery");
   gallery.innerHTML="";
-  const photos = JSON.parse(localStorage.getItem("photos") || "[]");
-  photos.forEach(p=>{
-    const div = document.createElement("div");
+  const photos=JSON.parse(localStorage.getItem("photos")||"[]");
+  photos.forEach((p,i)=>{
+    const div=document.createElement("div");
     div.className="card";
-    div.innerHTML = `<img src="${p}">`;
+    div.innerHTML=`
+      <img src="${p}">
+      <button onclick="likePhoto(${i})">❤️ <span id="like${i}">0</span></button>
+      ${isAdmin?`<button onclick="deletePhoto(${i})">🗑️ Delete</button>`:""}
+    `;
     gallery.appendChild(div);
   });
 }
+
+const likes={};
+function likePhoto(i){likes[i]=(likes[i]||0)+1;document.getElementById("like"+i).innerText=likes[i];}
+
+function deletePhoto(i){
+  let photos = JSON.parse(localStorage.getItem("photos")||"[]");
+  photos.splice(i,1);
+  localStorage.setItem("photos",JSON.stringify(photos));
+  loadPhotos();
+}
+
 loadPhotos();
+
+// ===== COMMENTS =====
+function addComment(){
+  const n=document.getElementById("visitorName").value.trim();
+  const c=document.getElementById("visitorComment").value.trim();
+  if(!n||!c) return alert("Enter name and comment");
+  let comments=JSON.parse(localStorage.getItem("comments")||"[]");
+  comments.unshift({name:n,text:c});
+  localStorage.setItem("comments",JSON.stringify(comments));
+  loadComments();
+  document.getElementById("visitorName").value="";
+  document.getElementById("visitorComment").value="";
+}
+function loadComments(){
+  const div=document.getElementById("comments");
+  div.innerHTML="";
+  let comments=JSON.parse(localStorage.getItem("comments")||"[]");
+  comments.forEach(c=>{
+    const el=document.createElement("div");
+    el.className="card";
+    el.innerHTML=`<strong>${c.name}</strong><br>${c.text}`;
+    div.appendChild(el);
+  });
+}
+loadComments();
 </script>
 </body>
 </html>
