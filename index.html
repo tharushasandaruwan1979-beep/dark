@@ -7,149 +7,66 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
 <style>
-body{
-  margin:0;
-  font-family:'Orbitron',sans-serif;
-  background:#0b0b0f;
-  color:#fff;
-}
-.hero{
-  height:100vh;
-  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),
-             url('banner.jpg') center/cover no-repeat;
-}
+body{margin:0;font-family:'Orbitron',sans-serif;background:#0b0b0f;color:#fff}
+.hero{height:100vh;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),url('banner.jpg') center/cover}
 
-/* Neon animation */
 @keyframes neonPulse{
   0%{box-shadow:0 0 8px #ff2e2e}
   50%{box-shadow:0 0 20px #ff2e2e}
   100%{box-shadow:0 0 8px #ff2e2e}
 }
 
-/* Bottom overlay bar */
 .overlay-bar{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(0,0,0,.6);
-  border:2px solid #ff2e2e;
-  border-radius:16px;
-  padding:10px 12px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  animation:neonPulse 2.5s infinite;
-  z-index:999;
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,.6);border:2px solid #ff2e2e;border-radius:16px;
+  padding:10px 12px;display:flex;gap:8px;align-items:center;
+  animation:neonPulse 2.5s infinite;z-index:999
 }
-.overlay-bar img.logo{
-  width:28px;
-  border-radius:50%;
-}
+.overlay-bar img.logo{width:28px;border-radius:50%}
 .overlay-bar a{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  color:#fff;
-  text-decoration:none;
-  border:2px solid #ff2e2e;
-  padding:6px 10px;
-  border-radius:10px;
-  font-size:13px;
-  transition:.3s;
+  display:inline-flex;align-items:center;gap:4px;color:#fff;text-decoration:none;
+  border:2px solid #ff2e2e;padding:6px 10px;border-radius:10px;font-size:13px;
+  transition:.3s
 }
-.overlay-bar a img{width:16px;height:16px;}
-.overlay-bar a:hover{
-  background:#ff2e2e;
-  box-shadow:0 0 15px #ff2e2e;
-  transform:scale(1.05);
-}
+.overlay-bar a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e}
 
-/* Scroll top bar */
 .scroll-bar{
-  position:fixed;
-  top:-120px;
-  left:0;
-  width:100%;
-  background:rgba(0,0,0,.85);
-  border-bottom:2px solid #ff2e2e;
-  padding:12px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  transition:.4s ease;
-  z-index:1000;
+  position:fixed;top:-120px;left:0;width:100%;
+  background:rgba(0,0,0,.85);border-bottom:2px solid #ff2e2e;
+  padding:12px 20px;display:flex;justify-content:space-between;
+  align-items:center;transition:.4s;z-index:1000
 }
-.scroll-bar.show{top:0;}
-.scroll-bar img{width:36px;border-radius:50%;}
+.scroll-bar.show{top:0}
+.scroll-bar img{width:36px;border-radius:50%}
 .scroll-bar a{
-  color:#fff;
-  text-decoration:none;
-  border:2px solid #ff2e2e;
-  padding:6px 10px;
-  border-radius:10px;
-  margin-left:6px;
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  transition:.3s;
+  color:#fff;text-decoration:none;border:2px solid #ff2e2e;
+  padding:6px 10px;border-radius:10px;margin-left:6px;
+  display:inline-flex;align-items:center;gap:4px;transition:.3s
 }
-.scroll-bar a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;}
+.scroll-bar a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e}
 
-/* Sections */
-section{padding:50px 20px;max-width:900px;margin:auto;}
-h2{color:#ff2e2e;}
+section{padding:50px 20px;max-width:900px;margin:auto}
+h2{color:#ff2e2e}
 
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 .card{
-  background:#14141c;
-  padding:15px;
-  border-radius:12px;
-  border:1px solid #ff2e2e;
-  text-align:center;
+  background:#14141c;padding:15px;border-radius:12px;
+  border:1px solid #ff2e2e;text-align:center
 }
-.card img,.card iframe{
-  width:100%;
-  border-radius:10px;
-}
-.card button{
-  margin-top:10px;
-  width:100%;
-  background:none;
-  border:2px solid #ff2e2e;
-  color:#fff;
-  padding:10px;
-  cursor:pointer;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:6px;
-  transition:.3s;
-}
-.card button:hover{
-  background:#ff2e2e;
-  box-shadow:0 0 15px #ff2e2e;
-}
+.card img,.card iframe{width:100%;border-radius:10px}
 
-/* Admin panel */
-#adminPanel{
-  display:none;
-  border:2px dashed #ff2e2e;
-  padding:20px;
-  margin-bottom:40px;
+button{
+  margin-top:10px;width:100%;background:none;border:2px solid #ff2e2e;
+  color:#fff;padding:10px;cursor:pointer;transition:.3s
 }
+button:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e}
+
+#adminPanel{display:none;border:2px dashed #ff2e2e;padding:20px;margin-bottom:40px}
 input,textarea{
-  padding:6px;
-  background:#14141c;
-  color:#fff;
-  border:2px solid #ff2e2e;
-  border-radius:6px;
+  padding:6px;background:#14141c;color:#fff;
+  border:2px solid #ff2e2e;border-radius:6px;width:100%
 }
-textarea{width:100%;margin-top:5px;}
+textarea{margin-top:5px}
 </style>
 </head>
 
@@ -157,36 +74,31 @@ textarea{width:100%;margin-top:5px;}
 
 <div class="hero"></div>
 
-<!-- Scroll bar -->
 <div class="scroll-bar" id="scrollBar">
-  <div class="logo">
-    <img src="logo.png"> <strong>DARK THARU</strong>
-  </div>
+  <div class="logo"><img src="logo.png"> <strong>DARK THARU</strong></div>
   <div class="links">
-    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">YT</a>
-    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">TikTok</a>
-    <a href="https://wa.me/94772076535" target="_blank">WhatsApp</a>
+    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">▶️ YT</a>
+    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">🎵 TikTok</a>
+    <a href="https://wa.me/94772076535" target="_blank">💬 WhatsApp</a>
   </div>
 </div>
 
-<!-- Bottom overlay -->
 <div class="overlay-bar">
   <img src="logo.png" class="logo">
-  <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">YT Main</a>
-  <a href="https://youtube.com/@darktharu-o7z" target="_blank">YT Dark</a>
-  <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">TikTok</a>
-  <a href="https://wa.me/94772076535" target="_blank">WhatsApp</a>
+  <a href="#">▶️ YT Main</a>
+  <a href="#">🔥 YT Dark</a>
+  <a href="#">🎵 TikTok</a>
+  <a href="#">💬 WhatsApp</a>
 </div>
 
 <section>
 
 <h2>Admin Upload Panel</h2>
 <div id="adminPanel">
-  <!-- ✅ ALL IMAGE TYPES -->
-  <input type="file" id="file" accept="image/*"><br><br>
-  <button onclick="upload()">⬆️ Upload Photo</button><br><br>
+  <input type="file" id="file" accept="image/*">
+  <button onclick="upload()">⬆️ Upload Photo</button>
 
-  <input type="text" id="videoURL" placeholder="YouTube Video URL"><br><br>
+  <input type="text" id="videoURL" placeholder="YouTube Video URL">
   <button onclick="addVideo()">🎬 Add Video</button>
 </div>
 
@@ -202,125 +114,90 @@ textarea{width:100%;margin-top:5px;}
 </section>
 
 <script>
-// Scroll bar
 window.addEventListener("scroll",()=>{
-  document.getElementById("scrollBar")
-    .classList.toggle("show",window.scrollY>200);
+  scrollBar.classList.toggle("show",scrollY>200);
 });
 
-// Admin mode
-const params=new URLSearchParams(window.location.search);
+const params=new URLSearchParams(location.search);
 const isAdmin=params.get("admin")==="DARKTHARU";
-if(isAdmin){
-  document.getElementById("adminPanel").style.display="block";
-  alert("Admin Mode Enabled");
-}
+if(isAdmin) adminPanel.style.display="block";
 
-// Gallery
 let galleryData=JSON.parse(localStorage.getItem("gallery")||"[]");
 const likes={};
 
 function loadGallery(){
-  const g=document.getElementById("gallery");
-  g.innerHTML="";
+  gallery.innerHTML="";
   galleryData.forEach((item,i)=>{
     const d=document.createElement("div");
     d.className="card";
-
-    if(item.type==="photo"){
-      d.innerHTML=`<img src="${item.src}">`;
-    }else{
-      d.innerHTML=`<iframe src="https://www.youtube.com/embed/${item.src}" allowfullscreen></iframe>`;
-    }
+    d.innerHTML=item.type==="photo"
+      ? `<img src="${item.src}">`
+      : `<iframe src="https://www.youtube.com/embed/${item.src}" allowfullscreen></iframe>`;
 
     d.innerHTML+=`
-      <button onclick="likeItem(${i})">❤️ <span id="like${i}">${likes[i]||0}</span></button>
+      <button onclick="likeItem(${i})">❤️ Like <span id="like${i}">${likes[i]||0}</span></button>
       ${isAdmin?`<button onclick="deleteItem(${i})">🗑️ Delete</button>`:""}
     `;
-    g.appendChild(d);
+    gallery.appendChild(d);
   });
 }
 loadGallery();
 
-// ✅ IMAGE UPLOAD – ALL IMAGE TYPES
 function upload(){
-  const file=document.getElementById("file").files[0];
-  if(!file) return alert("Image එකක් select කරන්න");
-
-  if(!file.type.startsWith("image/")){
-    return alert("Image file එකක් පමණක් upload කරන්න!");
-  }
-
-  const reader=new FileReader();
-  reader.onload=e=>{
+  const f=file.files[0];
+  if(!f||!f.type.startsWith("image/")) return alert("Image file only");
+  const r=new FileReader();
+  r.onload=e=>{
     galleryData.push({type:"photo",src:e.target.result});
     localStorage.setItem("gallery",JSON.stringify(galleryData));
     loadGallery();
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(f);
 }
 
-// Video
 function addVideo(){
-  const url=document.getElementById("videoURL").value.trim();
-  if(!url) return alert("URL එකක් දාන්න");
-
-  const id=url.includes("v=")
-    ? url.split("v=")[1].split("&")[0]
-    : url.split("youtu.be/")[1];
-
-  if(!id) return alert("Invalid URL");
+  const u=videoURL.value.trim();
+  if(!u) return;
+  const id=u.includes("v=")?u.split("v=")[1].split("&")[0]:u.split("youtu.be/")[1];
   galleryData.push({type:"video",src:id});
   localStorage.setItem("gallery",JSON.stringify(galleryData));
-  document.getElementById("videoURL").value="";
+  videoURL.value="";
   loadGallery();
 }
 
-// Likes
 function likeItem(i){
   likes[i]=(likes[i]||0)+1;
   document.getElementById("like"+i).innerText=likes[i];
 }
 
-// Delete
 function deleteItem(i){
   galleryData.splice(i,1);
   localStorage.setItem("gallery",JSON.stringify(galleryData));
   loadGallery();
 }
 
-// Comments
 function addComment(){
-  const n=visitorName.value.trim();
-  const c=visitorComment.value.trim();
-  if(!n||!c) return alert("Name & Comment දාන්න");
-
-  let comments=JSON.parse(localStorage.getItem("comments")||"[]");
-  comments.unshift({name:n,text:c,likes:0});
-  localStorage.setItem("comments",JSON.stringify(comments));
-  visitorName.value="";
-  visitorComment.value="";
+  const n=visitorName.value.trim(),c=visitorComment.value.trim();
+  if(!n||!c) return;
+  const arr=JSON.parse(localStorage.getItem("comments")||"[]");
+  arr.unshift({name:n,text:c,likes:0});
+  localStorage.setItem("comments",JSON.stringify(arr));
+  visitorName.value=visitorComment.value="";
   loadComments();
 }
 
 function loadComments(){
-  const div=document.getElementById("comments");
-  div.innerHTML="";
-  let comments=JSON.parse(localStorage.getItem("comments")||"[]");
-
-  comments.forEach((c,i)=>{
+  comments.innerHTML="";
+  const arr=JSON.parse(localStorage.getItem("comments")||"[]");
+  arr.forEach((c,i)=>{
     const el=document.createElement("div");
     el.className="card";
-    el.innerHTML=`<strong>${c.name}</strong> ❤️ ${c.likes}<br>${c.text}`;
-    const btn=document.createElement("button");
-    btn.innerText="👍 Like";
-    btn.onclick=()=>{
-      c.likes++;
-      localStorage.setItem("comments",JSON.stringify(comments));
-      loadComments();
-    };
-    el.appendChild(btn);
-    div.appendChild(el);
+    el.innerHTML=`<strong>${c.name}</strong><br>${c.text}<br>❤️ ${c.likes}`;
+    const b=document.createElement("button");
+    b.innerText="👍 Like";
+    b.onclick=()=>{c.likes++;localStorage.setItem("comments",JSON.stringify(arr));loadComments();}
+    el.appendChild(b);
+    comments.appendChild(el);
   });
 }
 loadComments();
