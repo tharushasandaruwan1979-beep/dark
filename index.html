@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gaming Dark Tharu</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-
 <style>
 body{
   margin:0;
@@ -13,21 +12,17 @@ body{
   background:#0b0b0f;
   color:#fff;
 }
-
-/* HERO */
 .hero{
   height:100vh;
   background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),url('banner.jpg') center/cover no-repeat;
 }
 
-/* Neon pulse */
+/* Neon bottom bar */
 @keyframes neonPulse{
   0%{box-shadow:0 0 8px #ff2e2e}
   50%{box-shadow:0 0 20px #ff2e2e}
   100%{box-shadow:0 0 8px #ff2e2e}
 }
-
-/* Overlay bottom bar */
 .overlay-bar{
   position:fixed;
   bottom:20px;
@@ -69,7 +64,7 @@ body{
   transform:scale(1.05);
 }
 
-/* Scroll bar */
+/* Scroll top bar */
 .scroll-bar{
   position:fixed;
   top:-120px;
@@ -99,6 +94,54 @@ body{
   transition:.3s;
 }
 .scroll-bar a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;}
+
+/* Sections */
+section{padding:50px 20px; max-width:900px;margin:auto;}
+h2{color:#ff2e2e;}
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+.card{
+  background:#14141c;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #ff2e2e;
+  text-align:center;
+}
+.card img, .card iframe{
+  width:100%;
+  border-radius:10px;
+}
+.card button{
+  margin-top:10px;
+  width:100%;
+  background:none;
+  border:2px solid #ff2e2e;
+  color:#fff;
+  padding:10px;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  transition:.3s;
+}
+.card button:hover{
+  background:#ff2e2e;
+  box-shadow:0 0 15px #ff2e2e;
+}
+
+/* Admin panel */
+#adminPanel{
+  display:none;
+  border:2px dashed #ff2e2e;
+  padding:20px;
+  margin-bottom:40px;
+}
+input, textarea{padding:6px;}
+textarea{width:100%;border:2px solid #ff2e2e;border-radius:6px;padding:8px;margin-top:5px;background:#14141c;color:#fff;}
 </style>
 </head>
 <body>
@@ -138,13 +181,133 @@ body{
   </a>
 </div>
 
+<section>
+<h2>Admin Upload Panel</h2>
+<div id="adminPanel">
+  <input type="file" id="file"><br><br>
+  <button onclick="upload()">⬆️ Upload Photo</button><br><br>
+  <input type="text" id="videoURL" placeholder="YouTube Video URL"><br><br>
+  <button onclick="addVideo()">🎬 Add Video</button>
+</div>
+
+<h2>Gallery</h2>
+<div class="gallery" id="gallery"></div>
+
+<h2>Visitor Comments</h2>
+<input type="text" id="visitorName" placeholder="ඔබගේ නම">
+<textarea id="visitorComment" placeholder="ඔබගේ comment"></textarea>
+<button onclick="addComment()">💬 Post Comment</button>
+<div id="comments"></div>
+</section>
+
+<!-- Click sound -->
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
 <script>
-// Scroll bar appear on scroll
+// Click sound
+function playSound(){document.getElementById("clickSound").currentTime=0;document.getElementById("clickSound").play();}
+
+// Scroll bar
 window.addEventListener("scroll",()=>{
   const bar=document.getElementById("scrollBar");
   if(window.scrollY>200) bar.classList.add("show");
   else bar.classList.remove("show");
 });
+
+// Admin login via URL: add ?admin=DARKTHARU
+const params = new URLSearchParams(window.location.search);
+const isAdmin = params.get("admin")==="DARKTHARU";
+if(isAdmin){document.getElementById("adminPanel").style.display="block";alert("Admin Mode Enabled");}
+
+// Gallery + Likes
+let galleryData = JSON.parse(localStorage.getItem("gallery")||"[]");
+const likes={};
+
+// Load gallery
+function loadGallery(){
+  const gallery=document.getElementById("gallery");
+  gallery.innerHTML="";
+  galleryData.forEach((item,i)=>{
+    const div=document.createElement("div");
+    div.className="card";
+    if(item.type==="photo"){
+      div.innerHTML=`<img src="${item.src}">`;
+    } else if(item.type==="video"){
+      div.innerHTML=`<iframe src="https://www.youtube.com/embed/${item.src}" frameborder="0" allowfullscreen></iframe>`;
+    }
+    div.innerHTML += `
+      <button onclick="likeItem(${i})">❤️ <span id="like${i}">${likes[i]||0}</span></button>
+      ${isAdmin?`<button onclick="deleteItem(${i})">🗑️ Delete</button>`:""}
+    `;
+    gallery.appendChild(div);
+  });
+}
+loadGallery();
+
+// Upload photo
+function upload(){
+  const file=document.getElementById("file").files[0];
+  if(!file) return alert("Select image");
+  const reader=new FileReader();
+  reader.onload=e=>{
+    galleryData.push({type:"photo", src:e.target.result});
+    localStorage.setItem("gallery", JSON.stringify(galleryData));
+    loadGallery();
+  }
+  reader.readAsDataURL(file);
+}
+
+// Add YouTube video
+function addVideo(){
+  const url=document.getElementById("videoURL").value.trim();
+  if(!url) return alert("Enter video URL");
+  const id=url.split("v=")[1]? url.split("v=")[1].split("&")[0] : url.split("youtu.be/")[1];
+  if(!id) return alert("Invalid URL");
+  galleryData.push({type:"video", src:id});
+  localStorage.setItem("gallery", JSON.stringify(galleryData));
+  document.getElementById("videoURL").value="";
+  loadGallery();
+}
+
+// Likes
+function likeItem(i){likes[i]=(likes[i]||0)+1;document.getElementById("like"+i).innerText=likes[i];}
+
+// Delete
+function deleteItem(i){galleryData.splice(i,1); localStorage.setItem("gallery",JSON.stringify(galleryData)); loadGallery();}
+
+// Comments (public)
+function addComment(){
+  const n=document.getElementById("visitorName").value.trim();
+  const c=document.getElementById("visitorComment").value.trim();
+  if(!n||!c) return alert("Enter name and comment");
+  let comments=JSON.parse(localStorage.getItem("comments")||"[]");
+  comments.unshift({name:n,text:c});
+  localStorage.setItem("comments",JSON.stringify(comments));
+  loadComments();
+  document.getElementById("visitorName").value="";
+  document.getElementById("visitorComment").value="";
+}
+function loadComments(){
+  const div=document.getElementById("comments");
+  div.innerHTML="";
+  let comments=JSON.parse(localStorage.getItem("comments")||"[]");
+  comments.forEach(c=>{
+    const el=document.createElement("div");
+    el.className="card";
+    el.innerHTML=`<strong>${c.name}</strong> ❤️ ${c.likes||0}<br>${c.text}`;
+    // Like button for comments
+    const likeBtn=document.createElement("button");
+    likeBtn.innerText="👍 Like";
+    likeBtn.onclick=()=>{
+      c.likes=(c.likes||0)+1;
+      localStorage.setItem("comments",JSON.stringify(comments));
+      loadComments();
+    };
+    el.appendChild(likeBtn);
+    div.appendChild(el);
+  });
+}
+loadComments();
 </script>
 </body>
 </html>
