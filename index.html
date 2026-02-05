@@ -214,7 +214,7 @@ if(isAdmin){document.getElementById("adminPanel").style.display="block";alert("A
 
 // Gallery data
 let galleryData = JSON.parse(localStorage.getItem("gallery")||"[]");
-const likes={};
+let likes = JSON.parse(localStorage.getItem("likes")||"{}");
 
 // Load gallery
 function loadGallery(){
@@ -223,11 +223,8 @@ function loadGallery(){
   galleryData.forEach((item,i)=>{
     const div=document.createElement("div");
     div.className="card";
-    if(item.type==="photo"){
-      div.innerHTML=`<img src="${item.src}">`;
-    } else if(item.type==="video"){
-      div.innerHTML=`<iframe src="https://www.youtube.com/embed/${item.src}" frameborder="0" allowfullscreen></iframe>`;
-    }
+    if(item.type==="photo") div.innerHTML=`<img src="${item.src}">`;
+    if(item.type==="video") div.innerHTML=`<iframe src="https://www.youtube.com/embed/${item.src}" frameborder="0" allowfullscreen></iframe>`;
     div.innerHTML += `
       <button onclick="likeItem(${i})"><img src="https://cdn-icons-png.flaticon.com/512/833/833472.png"> <span id="like${i}">${likes[i]||0}</span></button>
       ${isAdmin?`<button onclick="deleteItem(${i})"><img src="https://cdn-icons-png.flaticon.com/512/3096/3096687.png"> Delete</button>`:""}
@@ -263,10 +260,20 @@ function addVideo(){
 }
 
 // Likes
-function likeItem(i){likes[i]=(likes[i]||0)+1;document.getElementById("like"+i).innerText=likes[i];}
+function likeItem(i){
+  likes[i]=(likes[i]||0)+1;
+  document.getElementById("like"+i).innerText=likes[i];
+  localStorage.setItem("likes",JSON.stringify(likes));
+}
 
 // Delete
-function deleteItem(i){galleryData.splice(i,1); localStorage.setItem("gallery",JSON.stringify(galleryData)); loadGallery();}
+function deleteItem(i){
+  galleryData.splice(i,1);
+  delete likes[i];
+  localStorage.setItem("gallery",JSON.stringify(galleryData));
+  localStorage.setItem("likes",JSON.stringify(likes));
+  loadGallery();
+}
 
 // Comments
 function addComment(){
@@ -280,6 +287,7 @@ function addComment(){
   document.getElementById("visitorName").value="";
   document.getElementById("visitorComment").value="";
 }
+
 function loadComments(){
   const div=document.getElementById("comments");
   div.innerHTML="";
@@ -295,6 +303,7 @@ loadComments();
 </script>
 </body>
 </html>
+
 
 
 
