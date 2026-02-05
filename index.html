@@ -13,6 +13,7 @@ body{
   font-family:'Orbitron',sans-serif;
   background:#0b0b0f;
   color:#fff;
+  scroll-behavior:smooth;
 }
 
 /* HERO */
@@ -21,14 +22,14 @@ body{
   background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),url('banner.jpg') center/cover no-repeat;
 }
 
-/* Neon overlay */
+/* Neon overlay animation */
 @keyframes neonPulse{
   0%{box-shadow:0 0 8px #ff2e2e}
   50%{box-shadow:0 0 25px #ff2e2e}
   100%{box-shadow:0 0 8px #ff2e2e}
 }
 
-/* Bottom overlay bar */
+/* Overlay bottom bar */
 .overlay-bar{
   position:fixed;
   bottom:20px;
@@ -37,17 +38,14 @@ body{
   background:rgba(0,0,0,.6);
   border:2px solid #ff2e2e;
   border-radius:16px;
-  padding:14px 18px;
+  padding:10px 14px;
   display:flex;
-  gap:12px;
+  gap:8px;
   align-items:center;
   animation:neonPulse 2.5s infinite;
   z-index:999;
 }
-.overlay-bar img.logo-btn{
-  width:20px;
-  filter:drop-shadow(0 0 5px #ff2e2e);
-}
+.overlay-bar img{width:28px; border-radius:50%;}
 .overlay-bar a{
   color:#fff;
   text-decoration:none;
@@ -56,15 +54,17 @@ body{
   border-radius:10px;
   display:inline-flex;
   align-items:center;
-  gap:6px;
+  gap:4px;
+  font-size:14px;
   transition:.3s;
 }
 .overlay-bar a:hover{
   background:#ff2e2e;
-  box-shadow:0 0 15px #ff2e2e;
+  box-shadow:0 0 20px #ff2e2e;
+  transform:scale(1.05);
 }
 
-/* Scroll bar */
+/* Scroll top bar */
 .scroll-bar{
   position:fixed;
   top:-120px;
@@ -72,7 +72,7 @@ body{
   width:100%;
   background:rgba(0,0,0,.85);
   border-bottom:2px solid #ff2e2e;
-  padding:12px 25px;
+  padding:12px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -80,31 +80,24 @@ body{
   z-index:1000;
 }
 .scroll-bar.show{top:0;}
-.scroll-bar img.scroll-logo{
-  width:28px;
-  filter:drop-shadow(0 0 5px #ff2e2e);
-}
+.scroll-bar img{width:36px; border-radius:50%;}
 .scroll-bar a{
   color:#fff;
   text-decoration:none;
   border:2px solid #ff2e2e;
   padding:6px 10px;
   border-radius:10px;
-  margin-left:8px;
+  margin-left:6px;
   display:inline-flex;
   align-items:center;
   gap:4px;
   transition:.3s;
 }
-.scroll-bar a img{
-  width:18px;
-  filter:drop-shadow(0 0 5px #ff2e2e);
-}
 .scroll-bar a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;}
 
 /* Sections */
 section{padding:50px 20px; max-width:900px;margin:auto;}
-h2{color:#ff2e2e;}
+h2{color:#ff2e2e; margin-bottom:15px;}
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -116,6 +109,7 @@ h2{color:#ff2e2e;}
   border-radius:12px;
   border:1px solid #ff2e2e;
   text-align:center;
+  transition:.3s;
 }
 .card img, .card iframe{
   width:100%;
@@ -127,17 +121,13 @@ h2{color:#ff2e2e;}
   background:none;
   border:2px solid #ff2e2e;
   color:#fff;
-  padding:10px;
+  padding:8px;
   cursor:pointer;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:6px;
+  gap:4px;
   transition:.3s;
-}
-.card button img{
-  width:18px;
-  filter:drop-shadow(0 0 5px #ff2e2e);
 }
 .card button:hover{
   background:#ff2e2e;
@@ -150,6 +140,8 @@ h2{color:#ff2e2e;}
   border:2px dashed #ff2e2e;
   padding:20px;
   margin-bottom:40px;
+  border-radius:10px;
+  background:#14141c;
 }
 input, textarea{padding:6px;}
 textarea{width:100%;border:2px solid #ff2e2e;border-radius:6px;padding:8px;margin-top:5px;background:#14141c;color:#fff;}
@@ -159,32 +151,31 @@ textarea{width:100%;border:2px solid #ff2e2e;border-radius:6px;padding:8px;margi
 
 <div class="hero"></div>
 
-<!-- Scroll bar -->
+<!-- Scroll top bar -->
 <div class="scroll-bar" id="scrollBar">
-  <div class="logo"><img src="logo.png" class="scroll-logo"><strong>DARK THARU</strong></div>
+  <div class="logo"><img src="logo.png"><strong>DARK THARU</strong></div>
   <div class="links">
-    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"> YT</a>
-    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"> TikTok</a>
-    <a href="https://wa.me/94772076535" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp</a>
+    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">🎥 YT</a>
+    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">🎵 TikTok</a>
   </div>
 </div>
 
-<!-- Neon bottom bar -->
+<!-- Overlay bottom bar -->
 <div class="overlay-bar">
-  <img src="logo.png" class="logo-btn">
-  <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"> YT Main</a>
-  <a href="https://youtube.com/@darktharu-o7z" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"> YT Dark</a>
-  <a href="https://www.tiktok.com/@darktharu_shark" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"> TikTok</a>
-  <a href="https://wa.me/94772076535" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp</a>
+  <img src="logo.png">
+  <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">🎥 YT Main</a>
+  <a href="https://youtube.com/@darktharu-o7z" target="_blank">🎬 YT Dark</a>
+  <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">🎵 TikTok</a>
+  <a href="https://wa.me/94772076535" target="_blank">💬 WhatsApp</a>
 </div>
 
 <section>
 <h2>Admin Upload Panel</h2>
 <div id="adminPanel">
   <input type="file" id="file"><br><br>
-  <button onclick="upload()"><img src="https://cdn-icons-png.flaticon.com/512/992/992651.png"> Upload Photo</button><br><br>
+  <button onclick="upload()">⬆️ Upload Photo</button><br><br>
   <input type="text" id="videoURL" placeholder="YouTube Video URL"><br><br>
-  <button onclick="addVideo()"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"> Add Video</button>
+  <button onclick="addVideo()">🎬 Add Video</button>
 </div>
 
 <h2>Gallery</h2>
@@ -193,56 +184,55 @@ textarea{width:100%;border:2px solid #ff2e2e;border-radius:6px;padding:8px;margi
 <h2>Visitor Comments</h2>
 <input type="text" id="visitorName" placeholder="ඔබගේ නම">
 <textarea id="visitorComment" placeholder="ඔබගේ comment"></textarea>
-<button onclick="addComment()"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png"> Post Comment</button>
+<button onclick="addComment()">💬 Post Comment</button>
 <div id="comments"></div>
 </section>
 
+<!-- Click sound -->
 <audio id="clickSound" src="click.mp3" preload="auto"></audio>
 
 <script>
-// Click sound
+// ===== Click sound =====
 function playSound(){document.getElementById("clickSound").currentTime=0;document.getElementById("clickSound").play();}
 
-// Scroll bar
+// ===== Scroll bar =====
 window.addEventListener("scroll",()=>{
   const bar=document.getElementById("scrollBar");
   if(window.scrollY>200) bar.classList.add("show");
   else bar.classList.remove("show");
 });
 
-// Admin login
+// ===== Admin login via URL =====
 const params = new URLSearchParams(window.location.search);
 const isAdmin = params.get("admin")==="DARKTHARU";
 if(isAdmin){document.getElementById("adminPanel").style.display="block";alert("Admin Mode Enabled");}
 
-// Gallery data
+// ===== Gallery =====
 let galleryData = JSON.parse(localStorage.getItem("gallery")||"[]");
-let likes = JSON.parse(localStorage.getItem("likes")||"{}");
-
-// Load gallery
+const likes={};
 function loadGallery(){
-  const gallery = document.getElementById("gallery");
+  const gallery=document.getElementById("gallery");
   gallery.innerHTML="";
   galleryData.forEach((item,i)=>{
     const div=document.createElement("div");
     div.className="card";
     if(item.type==="photo") div.innerHTML=`<img src="${item.src}">`;
-    if(item.type==="video") div.innerHTML=`<iframe src="https://www.youtube.com/embed/${item.src}" frameborder="0" allowfullscreen></iframe>`;
+    else if(item.type==="video") div.innerHTML=`<iframe src="https://www.youtube.com/embed/${item.src}" frameborder="0" allowfullscreen></iframe>`;
     div.innerHTML += `
-      <button onclick="likeItem(${i})"><img src="https://cdn-icons-png.flaticon.com/512/833/833472.png"> <span id="like${i}">${likes[i]||0}</span></button>
-      ${isAdmin?`<button onclick="deleteItem(${i})"><img src="https://cdn-icons-png.flaticon.com/512/3096/3096687.png"> Delete</button>`:""}
+      <button onclick="likeItem(${i})">❤️ <span id="like${i}">${likes[i]||0}</span></button>
+      ${isAdmin?`<button onclick="deleteItem(${i})">🗑️ Delete</button>`:""}
     `;
     gallery.appendChild(div);
   });
 }
 loadGallery();
 
-// Upload photo
+// ===== Upload photo =====
 function upload(){
-  const file = document.getElementById("file").files[0];
+  const file=document.getElementById("file").files[0];
   if(!file) return alert("Select image");
-  const reader = new FileReader();
-  reader.onload = e=>{
+  const reader=new FileReader();
+  reader.onload=e=>{
     galleryData.push({type:"photo", src:e.target.result});
     localStorage.setItem("gallery", JSON.stringify(galleryData));
     loadGallery();
@@ -250,7 +240,7 @@ function upload(){
   reader.readAsDataURL(file);
 }
 
-// Add YouTube video
+// ===== Add YouTube video =====
 function addVideo(){
   const url=document.getElementById("videoURL").value.trim();
   if(!url) return alert("Enter video URL");
@@ -262,23 +252,13 @@ function addVideo(){
   loadGallery();
 }
 
-// Likes
-function likeItem(i){
-  likes[i]=(likes[i]||0)+1;
-  document.getElementById("like"+i).innerText=likes[i];
-  localStorage.setItem("likes",JSON.stringify(likes));
-}
+// ===== Likes =====
+function likeItem(i){likes[i]=(likes[i]||0)+1;document.getElementById("like"+i).innerText=likes[i];}
 
-// Delete
-function deleteItem(i){
-  galleryData.splice(i,1);
-  delete likes[i];
-  localStorage.setItem("gallery",JSON.stringify(galleryData));
-  localStorage.setItem("likes",JSON.stringify(likes));
-  loadGallery();
-}
+// ===== Delete =====
+function deleteItem(i){galleryData.splice(i,1);localStorage.setItem("gallery",JSON.stringify(galleryData));loadGallery();}
 
-// Comments
+// ===== Comments =====
 function addComment(){
   const n=document.getElementById("visitorName").value.trim();
   const c=document.getElementById("visitorComment").value.trim();
@@ -290,7 +270,6 @@ function addComment(){
   document.getElementById("visitorName").value="";
   document.getElementById("visitorComment").value="";
 }
-
 function loadComments(){
   const div=document.getElementById("comments");
   div.innerHTML="";
@@ -306,7 +285,6 @@ loadComments();
 </script>
 </body>
 </html>
-
 
 
 
