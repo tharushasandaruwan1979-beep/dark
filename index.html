@@ -16,7 +16,6 @@ body{
   height:100vh;
   background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),url('banner.jpg') center/cover no-repeat;
 }
-
 /* Neon bottom bar */
 @keyframes neonPulse{
   0%{box-shadow:0 0 8px #ff2e2e}
@@ -244,11 +243,15 @@ function loadGallery(){
 }
 loadGallery();
 
-// Upload photo
+// Upload photo (JPG, JPEG, PNG)
 function upload(){
-  const file=document.getElementById("file").files[0];
-  if(!file) return alert("Select image");
-  const reader=new FileReader();
+  const file = document.getElementById("file").files[0];
+  if(!file) return alert("Select an image");
+  const allowedTypes = ["image/jpeg","image/jpg","image/png"];
+  if(!allowedTypes.includes(file.type)){
+    return alert("Only JPG, JPEG or PNG files are allowed!");
+  }
+  const reader = new FileReader();
   reader.onload=e=>{
     galleryData.push({type:"photo", src:e.target.result});
     localStorage.setItem("gallery", JSON.stringify(galleryData));
@@ -281,7 +284,7 @@ function addComment(){
   const c=document.getElementById("visitorComment").value.trim();
   if(!n||!c) return alert("Enter name and comment");
   let comments=JSON.parse(localStorage.getItem("comments")||"[]");
-  comments.unshift({name:n,text:c});
+  comments.unshift({name:n,text:c, likes:0});
   localStorage.setItem("comments",JSON.stringify(comments));
   loadComments();
   document.getElementById("visitorName").value="";
@@ -291,15 +294,15 @@ function loadComments(){
   const div=document.getElementById("comments");
   div.innerHTML="";
   let comments=JSON.parse(localStorage.getItem("comments")||"[]");
-  comments.forEach(c=>{
+  comments.forEach((c,i)=>{
     const el=document.createElement("div");
     el.className="card";
-    el.innerHTML=`<strong>${c.name}</strong> ❤️ ${c.likes||0}<br>${c.text}`;
-    // Like button for comments
+    el.innerHTML=`<strong>${c.name}</strong> ❤️ ${c.likes}<br>${c.text}`;
+    // Like button
     const likeBtn=document.createElement("button");
     likeBtn.innerText="👍 Like";
     likeBtn.onclick=()=>{
-      c.likes=(c.likes||0)+1;
+      c.likes++;
       localStorage.setItem("comments",JSON.stringify(comments));
       loadComments();
     };
