@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gaming Dark Tharu</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
+/* මුලින්ම පේන background */
 body{
   font-family:'Orbitron',sans-serif;
   background:#0b0b0f;
   color:#fff;
 }
 
-/* HERO BG */
+/* HERO SECTION */
 .hero{
   height:100vh;
   background:
@@ -24,7 +25,7 @@ body{
     url('banner.jpg') center/cover no-repeat;
 }
 
-/* NEON PULSE */
+/* NEON PULSE animation */
 @keyframes neonPulse{
   0%{box-shadow:0 0 8px #ff2e2e}
   50%{box-shadow:0 0 25px #ff2e2e}
@@ -47,42 +48,21 @@ body{
   transition:.4s ease;
   z-index:1000;
 }
-
-.scroll-bar.show{
-  top:0;
-}
+.scroll-bar.show{top:0}
 
 .scroll-logo{
   display:flex;
   align-items:center;
   gap:10px;
 }
-
-.scroll-logo img{
-  width:36px;
-  filter:drop-shadow(0 0 8px #ff2e2e);
-}
-
+.scroll-logo img{width:36px; filter:drop-shadow(0 0 8px #ff2e2e);}
 .scroll-btns a{
-  color:#fff;
-  text-decoration:none;
-  border:2px solid #ff2e2e;
-  padding:8px 14px;
-  border-radius:10px;
-  margin-left:8px;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  transition:.3s;
-  font-size:13px;
+  color:#fff;text-decoration:none;border:2px solid #ff2e2e;
+  padding:8px 14px;border-radius:10px;margin-left:8px;
+  display:inline-flex;align-items:center;gap:6px;transition:.3s;font-size:13px;
 }
-
-.scroll-btns a img{width:16px}
-
-.scroll-btns a:hover{
-  background:#ff2e2e;
-  box-shadow:0 0 15px #ff2e2e;
-}
+.scroll-btns a img{width:16px;}
+.scroll-btns a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;}
 
 /* ================= BOTTOM OVERLAY BAR ================= */
 .overlay-bar{
@@ -101,46 +81,59 @@ body{
   animation:neonPulse 2.5s infinite;
   z-index:999;
 }
-
 .overlay-logo{
   display:flex;
   align-items:center;
   gap:10px;
 }
-
-.overlay-logo img{
-  width:44px;
-  filter:drop-shadow(0 0 10px #ff2e2e);
-}
-
+.overlay-logo img{width:44px; filter:drop-shadow(0 0 10px #ff2e2e);}
 .overlay-btns a{
-  color:#fff;
-  text-decoration:none;
-  border:2px solid #ff2e2e;
-  padding:10px 16px;
-  border-radius:12px;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:14px;
-  transition:.3s;
+  color:#fff;text-decoration:none;border:2px solid #ff2e2e;
+  padding:10px 16px;border-radius:12px;
+  display:inline-flex;align-items:center;gap:6px;font-size:14px;transition:.3s;
 }
-
-.overlay-btns a img{width:18px}
-
+.overlay-btns a img{width:18px;}
 .overlay-btns a:hover{
-  background:#ff2e2e;
-  box-shadow:0 0 20px #ff2e2e;
-  transform:translateY(-3px) scale(1.05);
+  background:#ff2e2e;box-shadow:0 0 20px #ff2e2e;transform:translateY(-3px) scale(1.05);
 }
 
-/* CONTENT */
-section{
-  padding:100px 20px;
-  max-width:900px;
-  margin:auto;
+/* CONTENT SECTIONS */
+section{padding:80px 20px;max-width:900px;margin:auto;}
+h2{color:#ff2e2e;margin-bottom:15px;}
+
+/* PHOTO GALLERY + LIKE BUTTON */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
-h2{color:#ff2e2e;margin-bottom:15px}
+.photo-card{
+  background:#14141c;
+  padding:15px;
+  border:1px solid #ff2e2e;
+  border-radius:12px;
+  text-align:center;
+}
+.photo-card img{
+  width:100%;
+  border-radius:10px;
+}
+.photo-card button{
+  margin-top:10px;width:100%;
+  background:none;border:2px solid #ff2e2e;color:#fff;
+  padding:10px;font-family:'Orbitron';cursor:pointer;transition:.3s;
+}
+.photo-card button:hover{
+  background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;
+}
+
+/* COMMENTS */
+input,textarea,button.comment-btn{
+  width:100%;padding:10px;margin:10px 0;
+  background:#14141c;border:2px solid #ff2e2e;color:#fff;font-family:'Orbitron';
+}
+.comment-btn:hover{background:#ff2e2e;cursor:pointer;}
+.comment{background:#14141c;padding:10px;border-left:4px solid #ff2e2e;margin-top:10px;}
 </style>
 </head>
 
@@ -157,14 +150,9 @@ h2{color:#ff2e2e;margin-bottom:15px}
     <img src="logo.png">
     <strong>DARK THARU</strong>
   </div>
-
   <div class="scroll-btns">
-    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank" onclick="playSound()">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YT
-    </a>
-    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank" onclick="playSound()">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">TikTok
-    </a>
+    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank" onclick="playSound()"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YT</a>
+    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank" onclick="playSound()"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">TikTok</a>
   </div>
 </div>
 
@@ -174,48 +162,139 @@ h2{color:#ff2e2e;margin-bottom:15px}
     <img src="logo.png">
     <strong>GAMING DARK THARU</strong>
   </div>
-
   <div class="overlay-btns">
-    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank" onclick="playSound()">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YT Main
-    </a>
-    <a href="https://youtube.com/@darktharu-o7z" target="_blank" onclick="playSound()">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YT Dark
-    </a>
-    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank" onclick="playSound()">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">TikTok
-    </a>
-    <a href="https://wa.me/94772076535" target="_blank" onclick="playSound()">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">WhatsApp
-    </a>
+    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank" onclick="playSound()"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YT Main</a>
+    <a href="https://youtube.com/@darktharu-o7z" target="_blank" onclick="playSound()"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YT Dark</a>
+    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank" onclick="playSound()"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">TikTok</a>
+    <a href="https://wa.me/94772076535" target="_blank" onclick="playSound()"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">WhatsApp</a>
   </div>
 </div>
 
+<!-- ADMIN PHOTO UPLOAD PANEL -->
 <section>
-  <h2>About</h2>
-  <p>Gaming Dark Tharu is a Sri Lankan gaming content brand.</p>
+<h2>Admin Photo Upload</h2>
+<p>ඕනෙම admin login කරන්න පස්සේ පේන panel එක</p>
+<input type="email" id="adminEmail" placeholder="Email">
+<input type="password" id="adminPass" placeholder="Password">
+<button onclick="adminLogin()">Login as Admin</button>
+
+<div id="uploadPanel" style="display:none;">
+  <input type="file" id="photoInput">
+  <button onclick="uploadPhoto()">Upload Photo</button>
+  <div id="preview"></div>
+</div>
 </section>
 
+<!-- PHOTO GALLERY -->
 <section>
-  <h2>Services</h2>
-  <p>Livestreams, YouTube gaming content, TikTok shorts.</p>
+<h2>Photo Gallery</h2>
+<div class="gallery" id="gallery"></div>
 </section>
 
-<script>
+<!-- VISITOR COMMENTS -->
+<section>
+<h2>Visitor Comments</h2>
+<input type="text" id="name" placeholder="ඔබගේ නම">
+<textarea id="comment" placeholder="ඔබගේ comment"></textarea>
+<button class="comment-btn" onclick="addComment()">Post Comment</button>
+<div id="comments"></div>
+</section>
+
+<script type="module">
+/*================ CLICK SOUND =================*/
 function playSound(){
   const s=document.getElementById("clickSound");
   s.currentTime=0; s.play();
 }
 
-/* SHOW TOP BAR ON SCROLL */
+/*================ TOP SCROLL BAR SHOW ON SCROLL =================*/
 window.addEventListener("scroll",()=>{
   const bar=document.getElementById("scrollBar");
-  if(window.scrollY>200){
-    bar.classList.add("show");
-  }else{
-    bar.classList.remove("show");
-  }
+  if(window.scrollY>200) bar.classList.add("show");
+  else bar.classList.remove("show");
 });
+
+/*================ ADMIN LOGIN =================*/
+let isAdmin=false;
+function adminLogin(){
+  const email=adminEmail.value;
+  const pass=adminPass.value;
+  if(email==="admin@darktharu.com" && pass==="dark123"){
+    alert("Admin login success");
+    document.getElementById("uploadPanel").style.display="block";
+    isAdmin=true;
+  }else alert("Wrong credentials");
+}
+
+/*================ PHOTO UPLOAD =================*/
+function uploadPhoto(){
+  if(!isAdmin){alert("Admin only"); return;}
+  const file=document.getElementById("photoInput").files[0];
+  if(!file){alert("Select a file"); return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    // localStorage එකට save කරලා
+    let photos=JSON.parse(localStorage.getItem("photos")||"[]");
+    photos.push(e.target.result);
+    localStorage.setItem("photos",JSON.stringify(photos));
+    displayPhotos();
+  };
+  reader.readAsDataURL(file);
+}
+
+/*================ DISPLAY PHOTOS =================*/
+function displayPhotos(){
+  const gallery=document.getElementById("gallery");
+  gallery.innerHTML="";
+  const photos=JSON.parse(localStorage.getItem("photos")||"[]");
+  photos.forEach((p,i)=>{
+    const div=document.createElement("div");
+    div.className="photo-card";
+    div.innerHTML=`<img src="${p}"><button onclick="likePhoto(${i})">❤️ Like <span id="like${i}">0</span></button>`;
+    gallery.appendChild(div);
+  });
+  // Likes restore
+  photos.forEach((_,i)=>{
+    document.getElementById("like"+i).innerText = localStorage.getItem("like"+i)||0;
+  });
+}
+
+/*================ LIKE LOGIC =================*/
+function likePhoto(i){
+  let count = localStorage.getItem("like"+i)||0;
+  count++;
+  localStorage.setItem("like"+i,count);
+  document.getElementById("like"+i).innerText=count;
+}
+
+/*================ COMMENTS =================*/
+function addComment(){
+  const n=name.value.trim();
+  const c=comment.value.trim();
+  if(!n||!c) return;
+  let data=JSON.parse(localStorage.getItem("comments")||"[]");
+  data.push({name:n,text:c});
+  localStorage.setItem("comments",JSON.stringify(data));
+  displayComments();
+  name.value=""; comment.value="";
+}
+function displayComments(){
+  const com=document.getElementById("comments");
+  com.innerHTML="";
+  let data=JSON.parse(localStorage.getItem("comments")||"[]");
+  data.forEach(c=>{
+    const div=document.createElement("div");
+    div.className="comment";
+    div.innerHTML=`<strong>${c.name}</strong><br>${c.text}`;
+    com.appendChild(div);
+  });
+}
+
+/*================ INITIAL LOAD =================*/
+window.onload=()=>{
+  displayPhotos();
+  displayComments();
+}
 </script>
 
 </body>
