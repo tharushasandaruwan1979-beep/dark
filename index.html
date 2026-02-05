@@ -14,14 +14,12 @@ body{
   background:#0b0b0f;
   color:#fff;
 }
-
-/* HERO */
 .hero{
   height:100vh;
   background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),url('banner.jpg') center/cover no-repeat;
 }
 
-/* NEON BOTTOM BAR */
+/* Neon overlay */
 @keyframes neonPulse{
   0%{box-shadow:0 0 8px #ff2e2e}
   50%{box-shadow:0 0 25px #ff2e2e}
@@ -42,12 +40,17 @@ body{
   animation:neonPulse 2.5s infinite;
   z-index:999;
 }
-.overlay-bar img{width:28px;}
+.overlay-bar img.logo-btn{
+  width:20px;
+  filter:drop-shadow(0 0 5px #ff2e2e);
+}
+
+/* Buttons */
 .overlay-bar a{
   color:#fff;
   text-decoration:none;
   border:2px solid #ff2e2e;
-  padding:10px 14px;
+  padding:8px 12px;
   border-radius:10px;
   display:inline-flex;
   align-items:center;
@@ -59,7 +62,7 @@ body{
   box-shadow:0 0 15px #ff2e2e;
 }
 
-/* SCROLL TOP BAR */
+/* Scroll bar */
 .scroll-bar{
   position:fixed;
   top:-120px;
@@ -75,7 +78,10 @@ body{
   z-index:1000;
 }
 .scroll-bar.show{top:0;}
-.scroll-bar img{width:36px;}
+.scroll-bar img.scroll-logo{
+  width:28px;
+  filter:drop-shadow(0 0 5px #ff2e2e);
+}
 .scroll-bar a{
   color:#fff;
   text-decoration:none;
@@ -88,13 +94,15 @@ body{
   gap:4px;
   transition:.3s;
 }
+.scroll-bar a img{
+  width:18px;
+  filter:drop-shadow(0 0 5px #ff2e2e);
+}
 .scroll-bar a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;}
 
-/* SECTIONS */
+/* Sections */
 section{padding:50px 20px; max-width:900px;margin:auto;}
-h2{color:#ff2e2e}
-
-/* GALLERY */
+h2{color:#ff2e2e;}
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -107,7 +115,10 @@ h2{color:#ff2e2e}
   border:1px solid #ff2e2e;
   text-align:center;
 }
-.card img{width:100%;border-radius:10px;}
+.card img, .card iframe{
+  width:100%;
+  border-radius:10px;
+}
 .card button{
   margin-top:10px;
   width:100%;
@@ -122,19 +133,23 @@ h2{color:#ff2e2e}
   gap:6px;
   transition:.3s;
 }
+.card button img{
+  width:18px;
+  filter:drop-shadow(0 0 5px #ff2e2e);
+}
 .card button:hover{
   background:#ff2e2e;
   box-shadow:0 0 15px #ff2e2e;
 }
 
-/* ADMIN PANEL */
+/* Admin panel */
 #adminPanel{
   display:none;
   border:2px dashed #ff2e2e;
   padding:20px;
   margin-bottom:40px;
 }
-input[type="file"], input[type="text"], textarea{padding:6px;}
+input, textarea{padding:6px;}
 textarea{width:100%;border:2px solid #ff2e2e;border-radius:6px;padding:8px;margin-top:5px;background:#14141c;color:#fff;}
 </style>
 </head>
@@ -142,106 +157,118 @@ textarea{width:100%;border:2px solid #ff2e2e;border-radius:6px;padding:8px;margi
 
 <div class="hero"></div>
 
-<!-- SCROLL TOP BAR -->
+<!-- Scroll bar -->
 <div class="scroll-bar" id="scrollBar">
-  <div class="logo"><img src="logo.png"><strong>DARK THARU</strong></div>
+  <div class="logo"><img src="logo.png" class="scroll-logo"><strong>DARK THARU</strong></div>
   <div class="links">
-    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">🎥 YT</a>
-    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">🎵 TikTok</a>
+    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"> YT</a>
+    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"> TikTok</a>
   </div>
 </div>
 
-<!-- NEON OVERLAY BOTTOM BAR -->
+<!-- Neon bottom bar -->
 <div class="overlay-bar">
-  <img src="logo.png">
-  <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">🎥 YT Main</a>
-  <a href="https://youtube.com/@darktharu-o7z" target="_blank">🎬 YT Dark</a>
-  <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">🎵 TikTok</a>
-  <a href="https://wa.me/94772076535" target="_blank">💬 WhatsApp</a>
+  <img src="logo.png" class="logo-btn">
+  <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"> YT Main</a>
+  <a href="https://youtube.com/@darktharu-o7z" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"> YT Dark</a>
+  <a href="https://www.tiktok.com/@darktharu_shark" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"> TikTok</a>
+  <a href="https://wa.me/94772076535" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp</a>
 </div>
 
 <section>
 <h2>Admin Upload Panel</h2>
 <div id="adminPanel">
-  <input type="file" id="file">
-  <button onclick="upload()">⬆️ Upload Photo</button>
+  <input type="file" id="file"><br><br>
+  <button onclick="upload()"><img src="https://cdn-icons-png.flaticon.com/512/992/992651.png"> Upload Photo</button><br><br>
+  <input type="text" id="videoURL" placeholder="YouTube Video URL"><br><br>
+  <button onclick="addVideo()"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"> Add Video</button>
 </div>
 
-<h2>Photo Gallery</h2>
+<h2>Gallery</h2>
 <div class="gallery" id="gallery"></div>
 
 <h2>Visitor Comments</h2>
 <input type="text" id="visitorName" placeholder="ඔබගේ නම">
 <textarea id="visitorComment" placeholder="ඔබගේ comment"></textarea>
-<button onclick="addComment()">💬 Post Comment</button>
+<button onclick="addComment()"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png"> Post Comment</button>
 <div id="comments"></div>
 </section>
 
-<!-- CLICK SOUND -->
 <audio id="clickSound" src="click.mp3" preload="auto"></audio>
 
 <script>
-// ===== CLICK SOUND =====
+// Click sound
 function playSound(){document.getElementById("clickSound").currentTime=0;document.getElementById("clickSound").play();}
 
-// ===== SCROLL BAR =====
+// Scroll bar
 window.addEventListener("scroll",()=>{
   const bar=document.getElementById("scrollBar");
   if(window.scrollY>200) bar.classList.add("show");
   else bar.classList.remove("show");
 });
 
-// ===== ADMIN LOGIN VIA URL =====
+// Admin login
 const params = new URLSearchParams(window.location.search);
-const isAdmin = params.get("admin") === "DARKTHARU";
-if(isAdmin){
-  document.getElementById("adminPanel").style.display="block";
-  alert("Admin Mode Enabled");
-}
+const isAdmin = params.get("admin")==="DARKTHARU";
+if(isAdmin){document.getElementById("adminPanel").style.display="block";alert("Admin Mode Enabled");}
 
-// ===== LOCALSTORAGE PHOTO UPLOAD =====
-function upload(){
-  const file = document.getElementById("file").files[0];
-  if(!file) return alert("Select image");
-  const reader = new FileReader();
-  reader.onload = e => {
-    let photos = JSON.parse(localStorage.getItem("photos") || "[]");
-    photos.push(e.target.result);
-    localStorage.setItem("photos", JSON.stringify(photos));
-    loadPhotos();
-  };
-  reader.readAsDataURL(file);
-}
+// Gallery data
+let galleryData = JSON.parse(localStorage.getItem("gallery")||"[]");
+const likes={};
 
-function loadPhotos(){
-  const gallery=document.getElementById("gallery");
+// Load gallery
+function loadGallery(){
+  const gallery = document.getElementById("gallery");
   gallery.innerHTML="";
-  const photos=JSON.parse(localStorage.getItem("photos")||"[]");
-  photos.forEach((p,i)=>{
+  galleryData.forEach((item,i)=>{
     const div=document.createElement("div");
     div.className="card";
-    div.innerHTML=`
-      <img src="${p}">
-      <button onclick="likePhoto(${i})">❤️ <span id="like${i}">0</span></button>
-      ${isAdmin?`<button onclick="deletePhoto(${i})">🗑️ Delete</button>`:""}
+    if(item.type==="photo"){
+      div.innerHTML=`<img src="${item.src}">`;
+    } else if(item.type==="video"){
+      div.innerHTML=`<iframe src="https://www.youtube.com/embed/${item.src}" frameborder="0" allowfullscreen></iframe>`;
+    }
+    div.innerHTML += `
+      <button onclick="likeItem(${i})"><img src="https://cdn-icons-png.flaticon.com/512/833/833472.png"> <span id="like${i}">${likes[i]||0}</span></button>
+      ${isAdmin?`<button onclick="deleteItem(${i})"><img src="https://cdn-icons-png.flaticon.com/512/3096/3096687.png"> Delete</button>`:""}
     `;
     gallery.appendChild(div);
   });
 }
+loadGallery();
 
-const likes={};
-function likePhoto(i){likes[i]=(likes[i]||0)+1;document.getElementById("like"+i).innerText=likes[i];}
-
-function deletePhoto(i){
-  let photos = JSON.parse(localStorage.getItem("photos")||"[]");
-  photos.splice(i,1);
-  localStorage.setItem("photos",JSON.stringify(photos));
-  loadPhotos();
+// Upload photo
+function upload(){
+  const file = document.getElementById("file").files[0];
+  if(!file) return alert("Select image");
+  const reader = new FileReader();
+  reader.onload = e=>{
+    galleryData.push({type:"photo", src:e.target.result});
+    localStorage.setItem("gallery", JSON.stringify(galleryData));
+    loadGallery();
+  }
+  reader.readAsDataURL(file);
 }
 
-loadPhotos();
+// Add YouTube video
+function addVideo(){
+  const url=document.getElementById("videoURL").value.trim();
+  if(!url) return alert("Enter video URL");
+  const id = url.split("v=")[1] ? url.split("v=")[1].split("&")[0] : url.split("youtu.be/")[1];
+  if(!id) return alert("Invalid URL");
+  galleryData.push({type:"video", src:id});
+  localStorage.setItem("gallery", JSON.stringify(galleryData));
+  document.getElementById("videoURL").value="";
+  loadGallery();
+}
 
-// ===== COMMENTS =====
+// Likes
+function likeItem(i){likes[i]=(likes[i]||0)+1;document.getElementById("like"+i).innerText=likes[i];}
+
+// Delete
+function deleteItem(i){galleryData.splice(i,1); localStorage.setItem("gallery",JSON.stringify(galleryData)); loadGallery();}
+
+// Comments
 function addComment(){
   const n=document.getElementById("visitorName").value.trim();
   const c=document.getElementById("visitorComment").value.trim();
@@ -268,6 +295,7 @@ loadComments();
 </script>
 </body>
 </html>
+
 
 
 
