@@ -22,7 +22,7 @@ body{
   background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),url('banner.jpg') center/cover no-repeat;
 }
 
-/* Neon overlay animation */
+/* Neon pulse animation */
 @keyframes neonPulse{
   0%{box-shadow:0 0 8px #ff2e2e}
   50%{box-shadow:0 0 25px #ff2e2e}
@@ -97,7 +97,7 @@ body{
 
 /* Sections */
 section{padding:50px 20px; max-width:900px;margin:auto;}
-h2{color:#ff2e2e; margin-bottom:15px;}
+h2{color:#ff2e2e;margin-bottom:15px;}
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -132,6 +132,7 @@ h2{color:#ff2e2e; margin-bottom:15px;}
 .card button:hover{
   background:#ff2e2e;
   box-shadow:0 0 15px #ff2e2e;
+  transform:scale(1.03);
 }
 
 /* Admin panel */
@@ -285,10 +286,6 @@ loadComments();
 </script>
 </body>
 </html>
-
-
-
-
 
 
 
