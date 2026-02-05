@@ -8,135 +8,43 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+/* ========== Basic Body & Fonts ========== */
+body{margin:0;padding:0;font-family:'Orbitron',sans-serif;background:#0b0b0f;color:#fff;}
 
-/* මුලින්ම පේන background */
-body{
-  font-family:'Orbitron',sans-serif;
-  background:#0b0b0f;
-  color:#fff;
-}
+/* ========== HERO SECTION ========== */
+.hero{height:100vh;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),url('banner.jpg') center/cover no-repeat;}
 
-/* HERO SECTION */
-.hero{
-  height:100vh;
-  background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),
-    url('banner.jpg') center/cover no-repeat;
-}
+/* ========== NEON OVERLAY BAR ========== */
+@keyframes neonPulse{0%{box-shadow:0 0 8px #ff2e2e}50%{box-shadow:0 0 25px #ff2e2e}100%{box-shadow:0 0 8px #ff2e2e}}
+.overlay-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(5,5,8,.6);backdrop-filter:blur(10px);border:2px solid #ff2e2e;border-radius:18px;padding:14px 18px;display:flex;align-items:center;gap:14px;animation:neonPulse 2.5s infinite;z-index:999;}
+.overlay-logo{display:flex;align-items:center;gap:10px;}
+.overlay-logo img{width:44px;filter:drop-shadow(0 0 10px #ff2e2e);}
+.overlay-btns a{color:#fff;text-decoration:none;border:2px solid #ff2e2e;padding:10px 16px;border-radius:12px;display:inline-flex;align-items:center;gap:6px;font-size:14px;transition:.3s;}
+.overlay-btns a img{width:18px;}
+.overlay-btns a:hover{background:#ff2e2e;box-shadow:0 0 20px #ff2e2e;transform:translateY(-3px) scale(1.05);}
 
-/* NEON PULSE animation */
-@keyframes neonPulse{
-  0%{box-shadow:0 0 8px #ff2e2e}
-  50%{box-shadow:0 0 25px #ff2e2e}
-  100%{box-shadow:0 0 8px #ff2e2e}
-}
-
-/* ================= TOP SCROLL BAR ================= */
-.scroll-bar{
-  position:fixed;
-  top:-120px;
-  left:0;
-  width:100%;
-  background:rgba(5,5,8,.85);
-  backdrop-filter:blur(8px);
-  border-bottom:2px solid #ff2e2e;
-  padding:12px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  transition:.4s ease;
-  z-index:1000;
-}
-.scroll-bar.show{top:0}
-
-.scroll-logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.scroll-logo img{width:36px; filter:drop-shadow(0 0 8px #ff2e2e);}
-.scroll-btns a{
-  color:#fff;text-decoration:none;border:2px solid #ff2e2e;
-  padding:8px 14px;border-radius:10px;margin-left:8px;
-  display:inline-flex;align-items:center;gap:6px;transition:.3s;font-size:13px;
-}
+/* ========== TOP SCROLL BAR ========== */
+.scroll-bar{position:fixed;top:-120px;left:0;width:100%;background:rgba(5,5,8,.85);backdrop-filter:blur(8px);border-bottom:2px solid #ff2e2e;padding:12px 25px;display:flex;justify-content:space-between;align-items:center;transition:.4s ease;z-index:1000;}
+.scroll-bar.show{top:0;}
+.scroll-logo{display:flex;align-items:center;gap:10px;}
+.scroll-logo img{width:36px;filter:drop-shadow(0 0 8px #ff2e2e);}
+.scroll-btns a{color:#fff;text-decoration:none;border:2px solid #ff2e2e;padding:8px 14px;border-radius:10px;margin-left:8px;display:inline-flex;align-items:center;gap:6px;transition:.3s;font-size:13px;}
 .scroll-btns a img{width:16px;}
 .scroll-btns a:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;}
 
-/* ================= BOTTOM OVERLAY BAR ================= */
-.overlay-bar{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(5,5,8,.6);
-  backdrop-filter:blur(10px);
-  border:2px solid #ff2e2e;
-  border-radius:18px;
-  padding:14px 18px;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  animation:neonPulse 2.5s infinite;
-  z-index:999;
-}
-.overlay-logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.overlay-logo img{width:44px; filter:drop-shadow(0 0 10px #ff2e2e);}
-.overlay-btns a{
-  color:#fff;text-decoration:none;border:2px solid #ff2e2e;
-  padding:10px 16px;border-radius:12px;
-  display:inline-flex;align-items:center;gap:6px;font-size:14px;transition:.3s;
-}
-.overlay-btns a img{width:18px;}
-.overlay-btns a:hover{
-  background:#ff2e2e;box-shadow:0 0 20px #ff2e2e;transform:translateY(-3px) scale(1.05);
-}
-
-/* CONTENT SECTIONS */
-section{padding:80px 20px;max-width:900px;margin:auto;}
+/* ========== CONTENT SECTIONS ========== */
+section{padding:50px;max-width:900px;margin:auto;}
 h2{color:#ff2e2e;margin-bottom:15px;}
-
-/* PHOTO GALLERY + LIKE BUTTON */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-.photo-card{
-  background:#14141c;
-  padding:15px;
-  border:1px solid #ff2e2e;
-  border-radius:12px;
-  text-align:center;
-}
-.photo-card img{
-  width:100%;
-  border-radius:10px;
-}
-.photo-card button{
-  margin-top:10px;width:100%;
-  background:none;border:2px solid #ff2e2e;color:#fff;
-  padding:10px;font-family:'Orbitron';cursor:pointer;transition:.3s;
-}
-.photo-card button:hover{
-  background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;
-}
-
-/* COMMENTS */
-input,textarea,button.comment-btn{
-  width:100%;padding:10px;margin:10px 0;
-  background:#14141c;border:2px solid #ff2e2e;color:#fff;font-family:'Orbitron';
-}
-.comment-btn:hover{background:#ff2e2e;cursor:pointer;}
+input,textarea,button{width:100%;padding:10px;margin:10px 0;background:#14141c;border:2px solid #ff2e2e;color:#fff;border-radius:8px;font-family:'Orbitron';}
+button:hover{background:#ff2e2e;cursor:pointer;}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.photo-card{background:#14141c;padding:15px;border:1px solid #ff2e2e;border-radius:12px;text-align:center;}
+.photo-card img{width:100%;border-radius:10px;}
+.photo-card button{margin-top:10px;width:100%;background:none;border:2px solid #ff2e2e;color:#fff;padding:10px;cursor:pointer;transition:.3s;}
+.photo-card button:hover{background:#ff2e2e;box-shadow:0 0 15px #ff2e2e;}
 .comment{background:#14141c;padding:10px;border-left:4px solid #ff2e2e;margin-top:10px;}
 </style>
 </head>
-
 <body>
 
 <div class="hero"></div>
@@ -170,10 +78,9 @@ input,textarea,button.comment-btn{
   </div>
 </div>
 
-<!-- ADMIN PHOTO UPLOAD PANEL -->
+<!-- ADMIN UPLOAD PANEL -->
 <section>
-<h2>Admin Photo Upload</h2>
-<p>ඕනෙම admin login කරන්න පස්සේ පේන panel එක</p>
+<h2>Admin Login</h2>
 <input type="email" id="adminEmail" placeholder="Email">
 <input type="password" id="adminPass" placeholder="Password">
 <button onclick="adminLogin()">Login as Admin</button>
@@ -196,108 +103,101 @@ input,textarea,button.comment-btn{
 <h2>Visitor Comments</h2>
 <input type="text" id="name" placeholder="ඔබගේ නම">
 <textarea id="comment" placeholder="ඔබගේ comment"></textarea>
-<button class="comment-btn" onclick="addComment()">Post Comment</button>
+<button onclick="addComment()">Post Comment</button>
 <div id="comments"></div>
 </section>
 
 <script type="module">
-/*================ CLICK SOUND =================*/
-function playSound(){
-  const s=document.getElementById("clickSound");
-  s.currentTime=0; s.play();
-}
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-/*================ TOP SCROLL BAR SHOW ON SCROLL =================*/
+/* ========== Firebase Config ========== */
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+/* ========== Click sound ========== */
+function playSound(){const s=document.getElementById("clickSound"); s.currentTime=0; s.play();}
+
+/* ========== Scroll bar show/hide ========== */
 window.addEventListener("scroll",()=>{
   const bar=document.getElementById("scrollBar");
   if(window.scrollY>200) bar.classList.add("show");
   else bar.classList.remove("show");
 });
 
-/*================ ADMIN LOGIN =================*/
+/* ========== Admin Login ========== */
 let isAdmin=false;
 function adminLogin(){
-  const email=adminEmail.value;
-  const pass=adminPass.value;
-  if(email==="admin@darktharu.com" && pass==="dark123"){
-    alert("Admin login success");
-    document.getElementById("uploadPanel").style.display="block";
-    isAdmin=true;
-  }else alert("Wrong credentials");
+  const email=document.getElementById("adminEmail").value;
+  const pass=document.getElementById("adminPass").value;
+  signInWithEmailAndPassword(auth,email,pass)
+    .then(()=>{alert("Admin login success");document.getElementById("uploadPanel").style.display="block";isAdmin=true;loadPhotos();loadComments();})
+    .catch(e=>alert("Login failed: "+e.message));
 }
 
-/*================ PHOTO UPLOAD =================*/
-function uploadPhoto(){
+/* ========== Photo Upload ========== */
+async function uploadPhoto(){
   if(!isAdmin){alert("Admin only"); return;}
   const file=document.getElementById("photoInput").files[0];
   if(!file){alert("Select a file"); return;}
-  const reader=new FileReader();
-  reader.onload=e=>{
-    // localStorage එකට save කරලා
-    let photos=JSON.parse(localStorage.getItem("photos")||"[]");
-    photos.push(e.target.result);
-    localStorage.setItem("photos",JSON.stringify(photos));
-    displayPhotos();
-  };
-  reader.readAsDataURL(file);
+  const storageRef=ref(storage,'photos/'+file.name);
+  await uploadBytes(storageRef,file);
+  const url=await getDownloadURL(storageRef);
+  await addDoc(collection(db,"photos"),{url,uploadedAt:new Date()});
+  loadPhotos();
 }
 
-/*================ DISPLAY PHOTOS =================*/
-function displayPhotos(){
+/* ========== Load Photos ========== */
+async function loadPhotos(){
+  const snapshot=await getDocs(query(collection(db,"photos"),orderBy("uploadedAt","desc")));
+  const photos=snapshot.docs.map(d=>d.data());
   const gallery=document.getElementById("gallery");
   gallery.innerHTML="";
-  const photos=JSON.parse(localStorage.getItem("photos")||"[]");
   photos.forEach((p,i)=>{
     const div=document.createElement("div");
     div.className="photo-card";
-    div.innerHTML=`<img src="${p}"><button onclick="likePhoto(${i})">❤️ Like <span id="like${i}">0</span></button>`;
+    div.innerHTML=`<img src="${p.url}"><button onclick="likePhoto('${p.url}')">❤️ Like <span id="like${i}">0</span></button>`;
     gallery.appendChild(div);
   });
-  // Likes restore
-  photos.forEach((_,i)=>{
-    document.getElementById("like"+i).innerText = localStorage.getItem("like"+i)||0;
-  });
 }
 
-/*================ LIKE LOGIC =================*/
-function likePhoto(i){
-  let count = localStorage.getItem("like"+i)||0;
-  count++;
-  localStorage.setItem("like"+i,count);
-  document.getElementById("like"+i).innerText=count;
-}
+/* ========== Likes ========== */
+const likes={};
+function likePhoto(url){if(!likes[url]) likes[url]=0; likes[url]++; displayLikes();}
+function displayLikes(){document.querySelectorAll(".photo-card").forEach((c,i)=>{const span=c.querySelector("span");span.innerText=likes[Object.keys(likes)[i]]||0;});}
 
-/*================ COMMENTS =================*/
-function addComment(){
-  const n=name.value.trim();
-  const c=comment.value.trim();
+/* ========== Comments ========== */
+async function addComment(){
+  const n=document.getElementById("name").value.trim();
+  const c=document.getElementById("comment").value.trim();
   if(!n||!c) return;
-  let data=JSON.parse(localStorage.getItem("comments")||"[]");
-  data.push({name:n,text:c});
-  localStorage.setItem("comments",JSON.stringify(data));
-  displayComments();
-  name.value=""; comment.value="";
+  await addDoc(collection(db,"comments"),{name:n,text:c,createdAt:new Date()});
+  document.getElementById("name").value=""; document.getElementById("comment").value="";
+  loadComments();
 }
-function displayComments(){
-  const com=document.getElementById("comments");
-  com.innerHTML="";
-  let data=JSON.parse(localStorage.getItem("comments")||"[]");
-  data.forEach(c=>{
-    const div=document.createElement("div");
-    div.className="comment";
-    div.innerHTML=`<strong>${c.name}</strong><br>${c.text}`;
-    com.appendChild(div);
-  });
+async function loadComments(){
+  const snapshot=await getDocs(query(collection(db,"comments"),orderBy("createdAt","desc")));
+  const coms=snapshot.docs.map(d=>d.data());
+  const div=document.getElementById("comments"); div.innerHTML="";
+  coms.forEach(c=>{const el=document.createElement("div"); el.className="comment"; el.innerHTML=`<strong>${c.name}</strong><br>${c.text}`; div.appendChild(el);});
 }
 
-/*================ INITIAL LOAD =================*/
-window.onload=()=>{
-  displayPhotos();
-  displayComments();
-}
+/* ========== Auto load ========== */
+onAuthStateChanged(auth,user=>{if(user){document.getElementById("uploadPanel").style.display="block";isAdmin=true;loadPhotos();loadComments();}});
 </script>
-
 </body>
 </html>
+
+
 
 
