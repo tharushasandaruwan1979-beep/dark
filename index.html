@@ -16,71 +16,63 @@ body{
   color:#fff;
 }
 
-/* HERO HEADER */
-header{
+/* HERO BACKGROUND ONLY */
+.hero{
   height:100vh;
-  background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),url('banner.jpg') center/cover no-repeat;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+  background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),
+    url('banner.jpg') center/cover no-repeat;
 }
 
-header h1{
-  font-size:3rem;
-  color:#ff2e2e;
-}
-
-/* SCROLL BAR */
-.scroll-bar{
+/* ALWAYS VISIBLE OVERLAY BAR */
+.overlay-bar{
   position:fixed;
-  top:-120px;
-  left:0;
-  width:100%;
-  background:#050508;
-  padding:10px 30px;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(5,5,8,0.55);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,46,46,.4);
+  border-radius:18px;
+  padding:12px 18px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  border-bottom:2px solid #ff2e2e;
-  transition:.4s ease;
+  gap:14px;
   z-index:999;
 }
 
-.scroll-bar.show{
-  top:0;
-}
-
 /* LOGO */
-.scroll-logo{
+.overlay-logo{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.scroll-logo img{
-  width:45px;
+.overlay-logo img{
+  width:42px;
 }
 
 /* BUTTONS */
-.scroll-btns a{
-  margin-left:10px;
-  padding:10px 18px;
-  border:2px solid #ff2e2e;
-  color:#fff;
+.overlay-btns a{
   text-decoration:none;
+  color:#fff;
+  border:2px solid #ff2e2e;
+  padding:10px 16px;
+  border-radius:12px;
   display:inline-flex;
   align-items:center;
   gap:6px;
-  transition:.3s;
+  transition:.3s ease;
+  font-size:14px;
 }
 
-.scroll-btns a img{
+.overlay-btns a img{
   width:18px;
 }
 
-.scroll-btns a:hover{
+.overlay-btns a:hover{
   background:#ff2e2e;
+  box-shadow:0 0 15px #ff2e2e;
   transform:translateY(-3px);
 }
 
@@ -97,52 +89,57 @@ h2{color:#ff2e2e;margin-bottom:20px}
 
 <body>
 
-<!-- SCROLL APPEARING BAR -->
-<div class="scroll-bar" id="scrollBar">
-  <div class="scroll-logo">
-    <img src="logo.png" alt="Logo">
+<!-- HERO BACKGROUND -->
+<div class="hero"></div>
+
+<!-- OVERLAY CONTROLS -->
+<div class="overlay-bar">
+
+  <div class="overlay-logo">
+    <img src="logo.png" alt="Gaming Dark Tharu Logo">
     <strong>GAMING DARK THARU</strong>
   </div>
 
-  <div class="scroll-btns">
+  <div class="overlay-btns">
+    <!-- MAIN YT -->
     <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YouTube
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+      YT Main
     </a>
+
+    <!-- SECOND YT -->
+    <a href="https://youtube.com/@darktharu-o7z?si=WT8j6Bymh9BmGtu2" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+      YT DarkTharu
+    </a>
+
+    <!-- TIKTOK -->
     <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">TikTok
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
+      TikTok
     </a>
+
+    <!-- WHATSAPP -->
     <a href="https://wa.me/94772076535" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">WhatsApp
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+      WhatsApp
     </a>
   </div>
-</div>
 
-<header>
-  <h1>GAMING DARK THARU</h1>
-</header>
+</div>
 
 <section>
   <h2>About</h2>
-  <p>Gaming Dark Tharu is a Sri Lankan gaming brand focused on livestreams and gaming content.</p>
+  <p>Gaming Dark Tharu is a Sri Lankan gaming brand focused on livestreams, YouTube content and short gaming clips.</p>
 </section>
 
 <section>
   <h2>Services</h2>
-  <p>Livestreams, YouTube videos, TikTok shorts and gaming tips.</p>
+  <p>Gaming livestreams, YouTube videos, TikTok shorts and gaming tips.</p>
 </section>
-
-<script>
-window.addEventListener("scroll", () => {
-  const bar = document.getElementById("scrollBar");
-  if(window.scrollY > 200){
-    bar.classList.add("show");
-  }else{
-    bar.classList.remove("show");
-  }
-});
-</script>
 
 </body>
 </html>
+
 
 
